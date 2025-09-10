@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BBA Major Diagnostic Quiz (Expanded)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6;
+        }
+        .container {
+            max-width: 800px;
+        }
+        .quiz-card {
+            background-color: #ffffff;
+            border-radius: 1rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+        }
+        .question-card {
+            background-color: #f9fafb;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .question-title {
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 1rem;
+        }
+        .answer-option {
+            display: flex;
+            align-items: center;
+            padding: 0.75rem;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: background-color 0.2s, box-shadow 0.2s;
+            margin-bottom: 0.5rem;
+        }
+        .answer-option:hover {
+            background-color: #e5e7eb;
+        }
+        .answer-option input[type="radio"] {
+            margin-right: 1rem;
+        }
+        .submit-button {
+            width: 100%;
+            background-color: #1e3a8a;
+            color: white;
+            padding: 1rem;
+            border-radius: 0.75rem;
+            font-weight: 700;
+            transition: background-color 0.2s;
+        }
+        .submit-button:hover {
+            background-color: #1c2e68;
+        }
+        .result-box {
+            background-color: #dbeafe;
+            border-radius: 1rem;
+            padding: 2rem;
+            text-align: center;
+            margin-top: 2rem;
+            border: 2px solid #3b82f6;
+        }
+        .result-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1e40af;
+            margin-bottom: 1rem;
+        }
+        .result-text {
+            color: #1e40af;
+            font-size: 1.125rem;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen p-4">
+
+<div class="container mx-auto">
+    <div class="quiz-card">
+        <h1 class="text-3xl font-bold text-center text-gray-800 mb-6">Your BBA Major Compass</h1>
+        <p class="text-center text-gray-600 mb-8">
+            Welcome! This quiz is designed to help you find a BBA major that fits your personality and long-term goals.
+            Just answer each question honestly and click "Submit" at the end to see your recommended major.
+        </p>
+
+        <form id="quizForm" onsubmit="event.preventDefault(); calculateResult();">
+            
+            <!-- Question 1 -->
+            <div class="question-card">
+                <div class="question-title">1. When you imagine your career 20 years from now, what makes you feel excited?</div>
+                <label class="answer-option">
+                    <input type="radio" name="q1" value="1" required>
+                    Leading a large team or a company, setting the vision for everyone.
+                </label>
+                <label class="answer-option">
+                    <input type="radio" name="q1" value="2">
+                    Creating and managing new and innovative products that people love.
+                </label>
+                <label class="answer-option">
+                    <input type="radio" name="q1" value="3">
+                    Being a financial expert, advising on big investments, and analyzing markets.
+                </label>
+                <label class="answer-option">
+                    <input type="radio" name="q1" value="4">
+                    Solving complex problems using data, automation, and technology.
+                </label>
+                <label class="answer-option">
+                    <input type="radio" name="q1" value="5">
+                    Ensuring all financial records are precise and compliant with regulations.
+                </label>
+                <label class="answer-option">
+                    <input type="radio" name="q1" value="6">
+                    Developing and maintaining a network of suppliers and partners around the world.
+                </label>
+            </div>
+
+            <!-- Question 2 -->
+            <div class="question-card">
+                <div class="question-title">2. Which of these activities sounds most interesting to you?</div>
+                <label class="answer-option">
+                    <input type="radio" name="q2" value="1" required>
+                    Mentoring junior colleagues and helping them develop their skills.
+                </label>
+                <label class="answer-option">
+                    <input type="radio" name="q2" value="2">
+                    Designing a persuasive presentation to convince clients to buy a product.
+                </label>
+                <label class="answer-option">
+                    <input type="radio" name="q2" value="3">
+                    Managing a budget, tracking expenses, and planning for a future investment.
+                </label>
+                <label class="answer-option">
+                    <input type="radio" name="q2" value="4">
+                    Building a simple website or app to automate a manual process.
+                </label>
+                <label class="answer-option">
+                    <input type="radio" name="q2" value="5">
+                    Analyzing a company's financial statements to identify strengths and weaknesses.
+                </label>
+                <label class="answer-option">
+                    <input type="radio" name="q2" value="6">
+                    Negotiating a business deal with a company from another country.
+                </label>
+            </div>
+
+            <!-- Question 3 -->
+            <div class="question-card">
+                <div class="question-title">3. What is your ideal work environment?</div>
+                <label class="answer-option">
+                    <input type="radio" name="q3" value="1" required>
+                    A fast-paced, social environment where I collaborate with a lot of people.
+                </label>
+                <label class="answer-option">
+                    <input type="radio" name="q3" value="2">
+                    A creative and dynamic setting where I can come up with new ideas.
+                </label>
+                <label class="answer-option">
+                    <input type="radio" name="q3" value="3">
+                    A structured and predictable setting focused on data and analysis.
+                </label>
+                <label class="answer-option">
+                    <input type="radio" name="q3" value="4">
+                    A work environment where I can be a bridge between different departments.
+                </label>
+                <label class="answer-option">
+                    <input type="radio" name="q3" value="5">
+                    A quiet, meticulous environment focused on accuracy and detail.
+                </label>
+                <label class="answer-option">
+                    <input type="radio" name="q3" value="6">
+                    A global workplace where I can interact with people from diverse cultures.
+                </label>
+            </div>
+
+            <!-- Question 4 -->
+            <div class="question-card">
+                <div class="question-title">4. When you encounter a big problem, what is your first thought?</div>
+                <label class="answer-option">
+                    <input type="radio" name="q4" value="1" required>
+                    "How can I get the right people together to solve this?"
+                </label>
+                <label class="answer-option">
+                    <input type="radio" name="q4" value="2">
+                    "What is the best way to communicate this issue to get support?"
+                </label>
+                <label class="answer-option">
+                    <input type="radio" name="q4" value="3">
+                    "Let's look at all the numbers and data to find the root cause."
+                </label>
+                <label class="answer-option">
+                    <input type="radio" name="q4" value="4">
+                    "What new technology or system could we build to fix this?"
+                </label>
+                <label class="answer-option">
+                    <input type="radio" name="q4" value="5">
+                    "I need to review all the financial reports to see where the error occurred."
+                </label>
+                <label class="answer-option">
+                    <input type="radio" name="q4" value="6">
+                    "What are the trade regulations and cultural norms I need to be aware of?"
+                </label>
+            </div>
+
+            <!-- Question 5 -->
+            <div class="question-card">
+                <div class="question-title">5. What is your comfort level with public speaking?</div>
+                <label class="answer-option">
+                    <input type="radio" name="q5" value="1" required>
+                    Very comfortable. I love engaging with an audience.
+                </label>
+                <label class="answer-option">
+                    <input type="radio" name="q5" value="2">
+                    Fairly comfortable. I'm confident when I'm passionate about the topic.
+                </label>
+                <label class="answer-option">
+                    <input type="radio" name="q5" value="3">
+                    I'd prefer not to. I am more comfortable working with data than people.
+                </label>
+                <label class="answer-option">
+                    <input type="radio" name="q5" value="4">
+                    It's okay, but I prefer to present technical solutions to a small group.
+                </label>
+                <label class="answer-option">
+                    <input type="radio" name="q5" value="5">
+                    I am most comfortable when I am presenting a financial audit or report.
+                </label>
+                <label class="answer-option">
+                    <input type="radio" name="q5" value="6">
+                    I am comfortable presenting to foreign clients and partners.
+                </label>
+            </div>
+
+            <!-- Question 6 -->
+            <div class="question-card">
+                <div class="question-title">6. If you were to pursue a master's degree abroad, which program would most likely attract you?</div>
+                <label class="answer-option">
+                    <input type="radio" name="q6" value="1" required>
+                    Master of Science in International Human Resource Management.
+                </label>
+                <label class="answer-option">
+                    <input type="radio" name="q6" value="2">
+                    Master of Arts in International Marketing and Brand Management.
+                </label>
+                <label class="answer-option">
+                    <input type="radio" name="q6" value="3">
+                    Master of Science in Financial Engineering or International Finance.
+                </label>
+                <label class="answer-option">
+                    <input type="radio" name="q6" value="4">
+                    Master of Science in Data Analytics or Information Systems.
+                </label>
+                <label class="answer-option">
+                    <input type="radio" name="q6" value="5">
+                    Master of Professional Accounting or Forensic Accounting.
+                </label>
+                <label class="answer-option">
+                    <input type="radio" name="q6" value="6">
+                    Master of International Trade or Global Business.
+                </label>
+            </div>
+
+            <!-- Question 7 -->
+            <div class="question-card">
+                <div class="question-title">7. How do you handle group projects?</div>
+                <label class="answer-option">
+                    <input type="radio" name="q7" value="1" required>
+                    I enjoy leading and motivating my teammates to meet deadlines.
+                </label>
+                <label class="answer-option">
+                    <input type="radio" name="q7" value="2">
+                    I like brainstorming creative ideas and handling the presentation part.
+                </label>
+                <label class="answer-option">
+                    <input type="radio" name="q7" value="3">
+                    I prefer to handle the research and analysis of data.
+                </label>
+                <label class="answer-option">
+                    <input type="radio" name="q7" value="4">
+                    I like organizing the project tasks and ensuring the team uses the right tools.
+                </label>
+                <label class="answer-option">
+                    <input type="radio" name="q7" value="5">
+                    I like to focus on the numbers and make sure the budget is balanced.
+                </label>
+                <label class="answer-option">
+                    <input type="radio" name="q7" value="6">
+                    I prefer to coordinate with different teams to ensure everything is on track.
+                </label>
+            </div>
+
+            <!-- Question 8 -->
+            <div class="question-card">
+                <div class="question-title">8. What kind of YouTube channels or social media content do you watch most often?</div>
+                <label class="answer-option">
+                    <input type="radio" name="q8" value="1" required>
+                    Interviews with CEOs and leaders about company culture.
+                </label>
+                <label class="answer-option">
+                    <input type="radio" name="q8" value="2">
+                    Ads, brand campaigns, or reviews of new products.
+                </label>
+                <label class="answer-option">
+                    <input type="radio" name="q8" value="3">
+                    Market analysis, stock trading, or financial news.
+                </label>
+                <label class="answer-option">
+                    <input type="radio" name="q8" value="4">
+                    Tech reviews, tutorials, or videos about new software.
+                </label>
+                <label class="answer-option">
+                    <input type="radio" name="q8" value="5">
+                    Content on personal finance, taxes, or business accounting.
+                </label>
+                <label class="answer-option">
+                    <input type="radio" name="q8" value="6">
+                    Documentaries about global trade, foreign markets, or travel.
+                </label>
+            </div>
+
+            <!-- Question 9 -->
+            <div class="question-card">
+                <div class="question-title">9. When you think about your BBA courses, which topics do you find most fascinating?</div>
+                <label class="answer-option">
+                    <input type="radio" name="q9" value="1" required>
+                    Organizational Behavior and Leadership.
+                </label>
+                <label class="answer-option">
+                    <input type="radio" name="q9" value="2">
+                    Brand Management and Consumer Behavior.
+                </label>
+                <label class="answer-option">
+                    <input type="radio" name="q9" value="3">
+                    Capital Markets and Corporate Finance.
+                </label>
+                <label class="answer-option">
+                    <input type="radio" name="q9" value="4" required>
+                    Database Management and Business Analytics.
+                </label>
+                <label class="answer-option">
+                    <input type="radio" name="q9" value="5">
+                    Financial Accounting and Auditing.
+                </label>
+                <label class="answer-option">
+                    <input type="radio" name="q9" value="6">
+                    International Trade and Foreign Direct Investment.
+                </label>
+            </div>
+
+            <!-- Question 10 -->
+            <div class="question-card">
+                <div class="question-title">10. What kind of skills do you want to master in the next 10 years?</div>
+                <label class="answer-option">
+                    <input type="radio" name="q10" value="1" required>
+                    Team leadership and conflict resolution.
+                </label>
+                <label class="answer-option">
+                    <input type="radio" name="q10" value="2">
+                    Persuasive communication and creative strategy.
+                </label>
+                <label class="answer-option">
+                    <input type="radio" name="q10" value="3">
+                    Financial modeling and risk analysis.
+                </label>
+                <label class="answer-option">
+                    <input type="radio" name="q10" value="4">
+                    Coding and data visualization.
+                </label>
+                <label class="answer-option">
+                    <input type="radio" name="q10" value="5">
+                    Bookkeeping and tax law.
+                </label>
+                <label class="answer-option">
+                    <input type="radio" name="q10" value="6">
+                    Negotiation and cross-cultural communication.
+                </label>
+            </div>
+
+            <button type="submit" class="submit-button">Submit & Find My Major</button>
+
+        </form>
+
+        <div id="result" class="result-box hidden">
+            <h2 class="result-title">Your Recommended Major Is:</h2>
+            <p id="majorRecommendation" class="result-text"></p>
+        </div>
+    </div>
+</div>
+
+<script>
+    function calculateResult() {
+        const form = document.getElementById('quizForm');
+        let totalScore = 0;
+        const questions = 10;
+        let allAnswered = true;
+
+        for (let i = 1; i <= questions; i++) {
+            const selectedOption = form.querySelector(`input[name="q${i}"]:checked`);
+            if (selectedOption) {
+                totalScore += parseInt(selectedOption.value, 10);
+            } else {
+                alert("Please answer all questions to see your results.");
+                allAnswered = false;
+                break;
+            }
+        }
+        
+        if (!allAnswered) {
+            return;
+        }
+
+        let recommendation = "";
+        let recommendationText = "";
+
+        if (totalScore >= 10 && totalScore <= 15) {
+            recommendation = "Human Resource Management (HRM)";
+            recommendationText = "Your interests and values align with a career focused on people. You are a natural leader who is empathetic and enjoys helping others grow. A major in HRM will prepare you to manage talent, build a positive work environment, and lead teams.";
+        } else if (totalScore >= 16 && totalScore <= 22) {
+            recommendation = "Marketing";
+            recommendationText = "You are a creative and strategic thinker. You are good at understanding what people want and how to communicate with them. A major in Marketing will help you build skills in branding, advertising, and consumer analysis, preparing you for a dynamic career in a consumer-centric world.";
+        } else if (totalScore >= 23 && totalScore <= 28) {
+            recommendation = "Finance";
+            recommendationText = "You are a logical and analytical person who is comfortable with numbers and data. You are interested in how money works and how to make smart financial decisions. A major in Finance will equip you with the skills to manage money, analyze investments, and work in banks, corporations, or consulting firms.";
+        } else if (totalScore >= 29 && totalScore <= 34) {
+            recommendation = "Management Information Systems (MIS)";
+            recommendationText = "You are a problem-solver who sees the big picture and likes to use technology to create efficiency. You can bridge the gap between business needs and technological solutions. A major in MIS will prepare you for a future in business analytics, IT management, and data-driven strategy.";
+        } else if (totalScore >= 35 && totalScore <= 40) {
+            recommendation = "Accounting";
+            recommendationText = "Your strength lies in a methodical and precise approach to data. You appreciate order, accuracy, and the strict rules of financial reporting. A major in Accounting will prepare you for a career in auditing, tax, or corporate financial management, where your attention to detail will be a valuable asset.";
+        } else if (totalScore >= 41 && totalScore <= 46) {
+            recommendation = "International Business";
+            recommendationText = "You have a global mindset and are excited by the prospect of working across borders and cultures. You are a natural negotiator and a strong communicator who is curious about foreign markets and diverse business practices. A major in International Business will help you navigate the complexities of global trade, foreign policy, and multicultural management.";
+        }
+
+        document.getElementById('majorRecommendation').innerHTML = `
+            <div class="result-title">${recommendation}</div>
+            <div class="result-text">${recommendationText}</div>
+        `;
+        document.getElementById('result').classList.remove('hidden');
+    }
+</script>
+
+</body>
+</html>
